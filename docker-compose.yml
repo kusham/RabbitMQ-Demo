@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  productbilling.api:
+    image: ${DOCKER_REGISTRY-}productbillingapi
+    build:
+      context: .
+      dockerfile: ProductBilling.API/Dockerfile
+
+  productorders.api:
+    image: ${DOCKER_REGISTRY-}productordersapi
+    build:
+      context: .
+      dockerfile: ProductOrders.API/Dockerfile
+
+  order-db:
+    image: postgres:latest
+
+  billing-db:
+    image: postgres:latest
+
+  rabbitmq:
+    image: rabbitmq:3-management
+
+volumes:
+  postgres-order:
+  postgres-billing:
+  rabbitmq-data:
+  rabbitmq-log:
+  
+
